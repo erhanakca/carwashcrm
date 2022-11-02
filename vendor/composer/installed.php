@@ -1,11 +1,11 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => 'v9.3.10',
-        'version' => '9.3.10.0',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => 'b1a11d3301642e650c6a9a7b4f8301e226f6f37b',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -365,12 +365,12 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-            'pretty_version' => 'v9.3.10',
-            'version' => '9.3.10.0',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => 'b1a11d3301642e650c6a9a7b4f8301e226f6f37b',
             'dev_requirement' => false,
         ),
         'laravel/pint' => array(
@@ -416,6 +416,24 @@
             'install_path' => __DIR__ . '/../laravel/tinker',
             'aliases' => array(),
             'reference' => 'dff39b661e827dae6e092412f976658df82dbac5',
+            'dev_requirement' => false,
+        ),
+        'lcobucci/clock' => array(
+            'pretty_version' => '2.2.0',
+            'version' => '2.2.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../lcobucci/clock',
+            'aliases' => array(),
+            'reference' => 'fb533e093fd61321bfcbac08b131ce805fe183d3',
+            'dev_requirement' => false,
+        ),
+        'lcobucci/jwt' => array(
+            'pretty_version' => '4.2.1',
+            'version' => '4.2.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../lcobucci/jwt',
+            'aliases' => array(),
+            'reference' => '72ac6d807ee51a70ad376ee03a2387e8646e10f3',
             'dev_requirement' => false,
         ),
         'league/commonmark' => array(
@@ -486,6 +504,15 @@
             'aliases' => array(),
             'reference' => '14daed4296fae74d9e3201d2c4925d1acb7aa614',
             'dev_requirement' => true,
+        ),
+        'namshi/jose' => array(
+            'pretty_version' => '7.2.3',
+            'version' => '7.2.3.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../namshi/jose',
+            'aliases' => array(),
+            'reference' => '89a24d7eb3040e285dd5925fcad992378b82bcff',
+            'dev_requirement' => false,
         ),
         'nesbot/carbon' => array(
             'pretty_version' => '2.62.1',
@@ -709,8 +736,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0|3.0',
-                1 => '1.0.0 || 2.0.0 || 3.0.0',
+                0 => '1.0.0 || 2.0.0 || 3.0.0',
+                1 => '1.0|2.0|3.0',
             ),
         ),
         'psr/simple-cache' => array(
@@ -950,6 +977,15 @@
             'reference' => '2b79cf6ed40946b64ac6713d7d2da8a9d87f612b',
             'dev_requirement' => true,
         ),
+        'stella-maris/clock' => array(
+            'pretty_version' => '0.1.6',
+            'version' => '0.1.6.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../stella-maris/clock',
+            'aliases' => array(),
+            'reference' => 'a94228dac03c9a8411198ce8c8dacbbe99c930c3',
+            'dev_requirement' => false,
+        ),
         'symfony/console' => array(
             'pretty_version' => 'v6.1.7',
             'version' => '6.1.7.0',
@@ -1100,6 +1136,15 @@
             'reference' => '9344f9cb97f3b19424af1a21a3b0e75b0a7d8d7e',
             'dev_requirement' => false,
         ),
+        'symfony/polyfill-php56' => array(
+            'pretty_version' => 'v1.20.0',
+            'version' => '1.20.0.0',
+            'type' => 'metapackage',
+            'install_path' => NULL,
+            'aliases' => array(),
+            'reference' => '54b8cd7e6c1643d78d011f3be89f3ef1f9f4c675',
+            'dev_requirement' => false,
+        ),
         'symfony/polyfill-php72' => array(
             'pretty_version' => 'v1.26.0',
             'version' => '1.26.0.0',
@@ -1230,6 +1275,17 @@
             'install_path' => __DIR__ . '/../tijsverkoyen/css-to-inline-styles',
             'aliases' => array(),
             'reference' => '4348a3a06651827a27d989ad1d13efec6bb49b19',
+            'dev_requirement' => false,
+        ),
+        'tymon/jwt-auth' => array(
+            'pretty_version' => 'dev-develop',
+            'version' => 'dev-develop',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../tymon/jwt-auth',
+            'aliases' => array(
+                0 => '1.0.x-dev',
+            ),
+            'reference' => '014be8d493d228d14bbc291b24e835d330c092a0',
             'dev_requirement' => false,
         ),
         'vlucas/phpdotenv' => array(
