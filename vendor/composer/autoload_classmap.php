@@ -26,7 +26,7 @@ return array(
     'App\\Models\\Job' => $baseDir . '/app/Models/Job.php',
     'App\\Models\\Service' => $baseDir . '/app/Models/Service.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
-    'App\\Models\\Vehicle_Type' => $baseDir . '/app/Models/Vehicle_Type.php',
+    'App\\Models\\VehicleType' => $baseDir . '/app/Models/VehicleType.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',

@@ -525,7 +525,7 @@ class ComposerStaticInit0a73b113f716fc8d49d1bb9446023e15
         'App\\Models\\Job' => __DIR__ . '/../..' . '/app/Models/Job.php',
         'App\\Models\\Service' => __DIR__ . '/../..' . '/app/Models/Service.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
-        'App\\Models\\Vehicle_Type' => __DIR__ . '/../..' . '/app/Models/Vehicle_Type.php',
+        'App\\Models\\VehicleType' => __DIR__ . '/../..' . '/app/Models/VehicleType.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
