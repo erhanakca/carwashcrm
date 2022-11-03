@@ -14,7 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('services', function (Blueprint $table) {
-            $table->id();
+            $table->id('service_id')->autoIncrement();
+            $table->string('name')->unique();
+            $table->integer('price');
+            $table->integer('cost');
             $table->timestamps();
         });
     }
