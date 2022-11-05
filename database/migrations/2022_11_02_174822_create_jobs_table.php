@@ -27,7 +27,9 @@ return new class extends Migration
             $table->string('plate_number');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->timestamps();
+            $table->timestamp('created_at'); //timestamps tarihleri tutuyor.
+            $table->timestamp('updated_at')->nullable();
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 

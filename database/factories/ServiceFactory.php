@@ -17,7 +17,9 @@ class ServiceFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => fake()->word(),
+            'price' => rand(40, 240),
+            'cost' => rand(10, 35)
         ];
     }
 }

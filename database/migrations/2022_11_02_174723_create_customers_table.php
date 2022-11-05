@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('surname');
             $table->string('phone');
-            $table->timestamps();
+            $table->timestamp('created_at'); //timestamps tarihleri tutuyor.
+            $table->timestamp('updated_at')->nullable();
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 
