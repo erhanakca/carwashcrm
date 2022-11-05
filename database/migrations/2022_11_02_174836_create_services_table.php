@@ -18,9 +18,8 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->integer('price');
             $table->integer('cost');
-            $table->timestamp('created_at'); //timestamps tarihleri tutuyor.
-            $table->timestamp('updated_at')->nullable();
-            $table->timestamp('deleted_at')->nullable();
+            $table->timestamps(); //timestamps tarihleri tutuyor.
+            $table->softDeletes();
         });
     }
 

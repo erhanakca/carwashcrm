@@ -17,9 +17,8 @@ return new class extends Migration
             $table->id('vehicle_types_id')->autoIncrement(); //autoIncrement tabloda id ler otomatik artacak.
             $table->string('name')->unique();  //unique birbirine benzemeyecek.
             $table->integer('price_multiplier')->nullable();
-            $table->timestamp('created_at'); //timestamps tarihleri tutuyor.
-            $table->timestamp('updated_at')->nullable();
-            $table->timestamp('deleted_at')->nullable();
+            $table->timestamps(); //timestamps tarihleri tutuyor.
+            $table->softDeletes();
         });
     }
 

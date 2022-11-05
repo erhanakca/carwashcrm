@@ -43,8 +43,15 @@ class AuthController extends Controller
      */
     public function register(Request $request): \Illuminate\Http\JsonResponse
     {
-        $validator = Validator::make($request->all(), [
+        $data = $request->all();
+        $name = $data['name'];
+        $data['name'] = mb_convert_case($name, MB_CASE_TITLE, "UTF-8");
+        $surname = $data['surname'];
+        $data['surname'] = mb_strtoupper($surname, "UTF-8");
+
+        $validator = Validator::make($data, [
             'name' => 'required|string|between:2,100',
+            'surname' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
             'password' => 'required|string|confirmed|min:6',
         ]);
