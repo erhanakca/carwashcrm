@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\VehicleTypeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +26,20 @@ Route::group([
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']);
 });
+
+Route::group([
+    'middleware' => 'auth:api',
+    'prefix' => 'vehicle_types',
+], function ($router){
+    Route::get('/', [VehicleTypeController::class, 'index']);
+});
+
+Route::group([
+    'middleware' => 'auth:api',
+    'prefix' => 'services'
+], function ($router){
+    Route::get('/', [ServiceController::class, 'index']);
+    Route::post('/add', [ServiceController::class, 'save']);
+});
+
+
