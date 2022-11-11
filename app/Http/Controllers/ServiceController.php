@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repositories\Eloquent\ServiceRepository;
 use App\Http\Repositories\Interfaces\ServiceRepositoryInterface;
 use App\Http\Requests\ServiceRequest;
 use App\Models\Service;
@@ -12,7 +13,7 @@ class ServiceController extends Controller
 {
     private $serviceRepository;
 
-    public function __construct(ServiceRepositoryInterface $serviceRepository)
+    public function __construct(ServiceRepository $serviceRepository)
     {
         $this->serviceRepository = $serviceRepository;
     }
