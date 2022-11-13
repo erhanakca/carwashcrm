@@ -4,8 +4,9 @@ namespace App\Http\Repositories\Eloquent;
 
 use App\Http\Repositories\Interfaces\ServiceRepositoryInterface;
 use App\Models\Service;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+
+
 
 class ServiceRepository extends BaseRepository implements ServiceRepositoryInterface
 {
@@ -19,3 +20,4 @@ class ServiceRepository extends BaseRepository implements ServiceRepositoryInter
         return Service::all();
     }
 }
+

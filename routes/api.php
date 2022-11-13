@@ -40,6 +40,8 @@ Route::group([
 ], function ($router){
     Route::get('/', [ServiceController::class, 'index']);
     Route::post('/add', [ServiceController::class, 'save']);
+    Route::patch( '/update/{service_id}', [ServiceController::class, 'update']);
+    Route::patch('/bulk_update/', [ServiceController::class, 'bulkUpdate']);
 });
 
 
