@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Validator;
 
-class ServiceRequest extends FormRequest
+class CustomerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,9 +28,9 @@ class ServiceRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'price' => 'required|integer',
-            'cost' => 'required|integer|lt:price'
+            'name' => 'required|string',
+            'surname' => 'required|string',
+            'phone' => 'required'
         ];
     }
 
@@ -38,8 +38,8 @@ class ServiceRequest extends FormRequest
     {
         return [
             'name.required' => 'Name is Required!',
-            'price.required' => 'Price is Required!',
-            'cost.required' => 'Cost is Required!'
+            'surname.required' => 'Surname is Required!',
+            'phone.required' => 'Phone is Required!'
         ];
     }
 
@@ -51,4 +51,6 @@ class ServiceRequest extends FormRequest
             'data' => null
         ], 422));
     }
+
+
 }

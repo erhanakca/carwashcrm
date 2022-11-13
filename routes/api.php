@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\VehicleTypeController;
 use Illuminate\Http\Request;
@@ -42,6 +43,14 @@ Route::group([
     Route::post('/add', [ServiceController::class, 'save']);
     Route::patch( '/update/{service_id}', [ServiceController::class, 'update']);
     Route::patch('/bulk_update/', [ServiceController::class, 'bulkUpdate']);
+});
+
+Route::group([
+    'middleware' => 'auth:api',
+    'prefix' => 'customers'
+], function ($router){
+    Route::get('/', [CustomerController::class, 'index']);
+    Route::post('/add', [CustomerController::class, 'save']);
 });
 
 
