@@ -35,4 +35,13 @@ class CustomerController extends Controller
             return response()->json(['success' => false, 'error' => $e->getMessage()], 404);
         }
     }
+
+    public function update($customer_id, CustomerRequest $request )
+    {
+        try {
+            return response()->json(['success' => true, 'data' => $this->customerRepository->update($customer_id, $request->validated())]);
+        }catch (\Exception $e){
+            return response()->json(['success' => false, 'error' => $e->getMessage()], 404);
+        }
+    }
 }

@@ -51,6 +51,7 @@ Route::group([
 ], function ($router){
     Route::get('/', [CustomerController::class, 'index']);
     Route::post('/add', [CustomerController::class, 'save']);
+    Route::patch('/update/{customer_id}', [CustomerController::class, 'update']);
 });
 
 
