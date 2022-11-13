@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+
 class ServiceBulkUpdateRequest extends FormRequest
 {
     /**
@@ -30,17 +31,5 @@ class ServiceBulkUpdateRequest extends FormRequest
             'cost' => 'required|integer|lt:price'
         ];
 
-        dd($this->request->all());
-
-        /*foreach ($this->request->get('data') as $item)
-        {
-            dd($item);
-            foreach ($item as $key => $value)
-            {
-                dd($value, $key);
-                $rules[$key] = 'required';
-            }
-        }
-        return $rules;*/
     }
 }

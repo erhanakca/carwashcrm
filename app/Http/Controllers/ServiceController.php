@@ -60,7 +60,7 @@ class ServiceController extends Controller
             return response()->json(['success' => false, 'error' => $e->getMessage()], 404);
         }
 
-        return response()->json(['success' => true], 200);
+        return response()->json(['success' => true, $data], 200);
     }
 
 }
