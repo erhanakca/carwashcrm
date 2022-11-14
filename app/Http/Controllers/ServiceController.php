@@ -40,7 +40,8 @@ class ServiceController extends Controller
     public function update($service_id, ServiceRequest $request)
     {
         try {
-            return response()->json(['success' => true, 'data' => $this->serviceRepository->update($service_id, $request->validated())]);
+            $this->serviceRepository->delete($service_id);
+            return response()->json(['success' => true, 'data' => $this->serviceRepository->create($request->validated())]);
         }catch (\Exception $e){
             return response()->json(['success' => false, 'error' => $e->getMessage()], 404);
         }
@@ -48,13 +49,16 @@ class ServiceController extends Controller
 
     public function bulkUpdate(Request $request)
     {
+
+        //TODO request controlü yapılacak.
         try {
         $data = $request->all();
         foreach ($data as $item)
         {
+            $this->serviceRepository->delete($item['service_id']);
             $update_data = ['name' => $item['name'], 'price' => $item['price'], 'cost' => $item['cost'] ];
 
-            $this->serviceRepository->update($item['service_id'], $update_data);
+            $this->serviceRepository->create($update_data);
         }
         }catch (\Exception $e) {
             return response()->json(['success' => false, 'error' => $e->getMessage()], 404);

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id('service_id')->autoIncrement();
-            $table->string('name')->unique();
+            $table->string('name');
             $table->integer('price');
             $table->integer('cost');
             $table->timestamps(); //timestamps tarihleri tutuyor.
