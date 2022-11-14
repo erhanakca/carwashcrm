@@ -43,6 +43,7 @@ Route::group([
     Route::post('/add', [ServiceController::class, 'save']);
     Route::patch( '/update/{service_id}', [ServiceController::class, 'update']);
     Route::patch('/bulk_update/', [ServiceController::class, 'bulkUpdate']);
+    Route::delete('/delete/{service_id}', [ServiceController::class, 'delete']);
 });
 
 Route::group([

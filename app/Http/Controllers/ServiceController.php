@@ -63,4 +63,13 @@ class ServiceController extends Controller
         return response()->json(['success' => true, $data], 200);
     }
 
+    public function delete($service_id)
+    {
+        try {
+            return response()->json(['success' => true, 'data' => $this->serviceRepository->delete($service_id)]);
+        }catch (\Exception $e){
+            return response()->json(['success' => false, 'error' => $e->getMessage()], 404);
+        }
+    }
+
 }

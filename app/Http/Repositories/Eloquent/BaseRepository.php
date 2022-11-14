@@ -29,7 +29,7 @@ class BaseRepository implements ModelRepositoryInterface
 
     public function delete(int $id): bool
     {
-        return $this->model->delete($id);
+        return $this->model->destroy($id);
     }
 
     public function find(int $id): Model
