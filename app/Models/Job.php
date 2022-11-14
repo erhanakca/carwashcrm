@@ -41,7 +41,7 @@ class Job extends Model
 
     public function service()
     {
-        return $this->hasOne(Service::class, 'service_id', 'service_id');
+        return $this->hasOne(Service::class, 'service_id', 'service_id')->withTrashed();
     }
 
     public function customer()

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('vehicle_types', function (Blueprint $table) {
-            $table->id('vehicle_types_id')->autoIncrement(); //autoIncrement tabloda id ler otomatik artacak.
+            $table->id('vehicle_type_id')->autoIncrement(); //autoIncrement tabloda id ler otomatik artacak.
             $table->string('name')->unique();  //unique birbirine benzemeyecek.
             $table->integer('price_multiplier')->nullable();
             $table->timestamps(); //timestamps tarihleri tutuyor.

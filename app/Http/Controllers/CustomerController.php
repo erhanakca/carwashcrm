@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Repositories\Eloquent\CustomerRepository;
 use App\Http\Requests\CustomerRequest;
 use App\Models\Customer;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Database\RecordsNotFoundException;
 
@@ -18,7 +19,7 @@ class CustomerController extends Controller
         $this->customerRepository = $customerRepository;
     }
 
-    public function index()
+    public function index(): JsonResponse
     {
         try {
             return response()->json(['success' => true, 'data' =>  $this->customerRepository->all()]);
@@ -27,7 +28,7 @@ class CustomerController extends Controller
         }
     }
 
-    public function save(CustomerRequest $request)
+    public function save(CustomerRequest $request): JsonResponse
     {
         try {
             return response()->json(['success' => true, 'data' => $this->customerRepository->create($request->validated())]);
@@ -36,7 +37,7 @@ class CustomerController extends Controller
         }
     }
 
-    public function update($customer_id, CustomerRequest $request )
+    public function update($customer_id, CustomerRequest $request ): JsonResponse
     {
         try {
             return response()->json(['success' => true, 'data' => $this->customerRepository->update($customer_id, $request->validated())]);

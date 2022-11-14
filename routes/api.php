@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\VehicleTypeController;
 use Illuminate\Http\Request;
@@ -53,6 +54,13 @@ Route::group([
     Route::get('/', [CustomerController::class, 'index']);
     Route::post('/add', [CustomerController::class, 'save']);
     Route::patch('/update/{customer_id}', [CustomerController::class, 'update']);
+});
+
+Route::group([
+    'middleware' => 'auth:api',
+    'prefix' => 'jobs'
+], function ($router){
+    Route::get('/', [JobController::class, 'index']);
 });
 
 
