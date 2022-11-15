@@ -61,6 +61,7 @@ Route::group([
     'prefix' => 'jobs'
 ], function ($router){
     Route::get('/', [JobController::class, 'index']);
+    Route::post('/add', [JobController::class, 'save']);
 });
 
 
