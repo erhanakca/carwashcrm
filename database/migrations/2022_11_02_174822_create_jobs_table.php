@@ -25,8 +25,8 @@ return new class extends Migration
             $table->foreignIdFor(VehicleType::class, 'vehicle_type_id');
             $table->integer('status');
             $table->string('plate_number');
-            $table->dateTime('start_date');
-            $table->dateTime('end_date');
+            $table->dateTime('start_date')->nullable();
+            $table->dateTime('end_date')->nullable();
             $table->timestamps(); //timestamps tarihleri tutuyor.
             $table->softDeletes();
         });

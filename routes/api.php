@@ -62,6 +62,7 @@ Route::group([
 ], function ($router){
     Route::get('/', [JobController::class, 'index']);
     Route::post('/add', [JobController::class, 'save']);
+    Route::patch('/update_status/{job_id}', [JobController::class, 'updateStatus']);
 });
 
 

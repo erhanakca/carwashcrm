@@ -2,11 +2,12 @@
 
 namespace App\Http\Requests;
 
+use App\Constants\StatusConstants;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class JobRequest extends FormRequest
+class JobUpdateStatusRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,20 +27,7 @@ class JobRequest extends FormRequest
     public function rules()
     {
         return [
-            'service_id' => 'required',
-            'customer_id' => 'required',
-            'vehicle_type_id' => 'required',
-            'plate_number' => 'required',
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'service_id.required' => 'Service id is Required!',
-            'customer_id.required' => 'Customer id is Required!',
-            'vehicle_type_id.required' => 'Vehicle Type id is Required!',
-            'plate_number.required' => 'Plate Number is Required!',
+            'status' => 'required|integer'
         ];
     }
 
@@ -51,4 +39,5 @@ class JobRequest extends FormRequest
             'data' => null
         ], 422));
     }
+
 }
