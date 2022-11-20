@@ -48,8 +48,6 @@ class JobRepository extends BaseRepository implements JobRepositoryInterface
                 'status' => StatusConstants::CANCELLED,
             ]);
         }
-        dd($status);
-
         return $job;
     }
 }

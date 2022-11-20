@@ -54,4 +54,13 @@ class JobController extends Controller
             return response()->json(['success' => false, 'error' => $e->getMessage()], 404);
         }
     }
+
+    public function delete($job_id)
+    {
+        try {
+            return response()->json(['success' => true, 'data' => $this->jobRepository->delete($job_id)]);
+        }catch (\Exception $e){
+            return response()->json(['success' => false, 'error' => $e->getMessage()], 404);
+        }
+    }
 }
