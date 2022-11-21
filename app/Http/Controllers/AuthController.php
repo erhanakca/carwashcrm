@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,16 +25,9 @@ class AuthController extends Controller
      *
      * @return JsonResponse
      */
-    public function login(Request $request): JsonResponse
+    public function login(LoginRequest $request): JsonResponse
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required|string|min:6',
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['success' => false, 'errors' => $validator->errors()], 422);
-        }
-        if (! $token = auth()->attempt($validator->validated())) {
+        if (! $token = auth()->attempt($request->validated())) {
             return response()->json(['success' => false, 'error' => 'Unauthorized'], 401);
         }
         return $this->createNewToken($token);
@@ -42,22 +37,10 @@ class AuthController extends Controller
      *
      * @return JsonResponse
      */
-    public function register(Request $request): JsonResponse
+    public function register(RegisterRequest $request): JsonResponse
     {
-        $data = $request->all();
-
-        $validator = Validator::make($data, [
-            'name' => 'required|string|between:2,100',
-            'surname' => 'required|string|between:2,100',
-            'company' => 'required|string|between:2,100',
-            'email' => 'required|string|email|max:100|unique:users',
-            'password' => 'required|string|confirmed|min:6',
-        ]);
-        if($validator->fails()){
-            return response()->json(['errors' => $validator->errors()->toJson(), 'success' => false], 400);
-        }
         $user = User::create(array_merge(
-            $validator->validated(),
+            $request->validated(),
             ['password' => bcrypt($request->password)]
         ));
         return response()->json([
