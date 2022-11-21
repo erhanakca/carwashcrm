@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Repositories\Eloquent\ServiceRepository;
-use App\Http\Repositories\Interfaces\ServiceRepositoryInterface;
-use App\Http\Requests\ServiceBulkUpdateRequest;
 use App\Http\Requests\ServiceRequest;
-use App\Models\Service;
 use Illuminate\Database\RecordsNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

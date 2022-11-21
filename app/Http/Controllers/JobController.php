@@ -3,16 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Constants\StatusConstants;
-use App\Http\Repositories\Eloquent\CustomerRepository;
 use App\Http\Repositories\Eloquent\JobRepository;
 use App\Http\Requests\JobRequest;
 use App\Http\Requests\JobUpdateStatusRequest;
 use App\Http\Requests\JobUpdateRequest;
-use App\Models\Job;
-use http\Env\Response;
 use Illuminate\Database\RecordsNotFoundException;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+
 
 class JobController extends Controller
 {

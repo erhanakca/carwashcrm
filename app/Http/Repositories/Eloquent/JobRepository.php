@@ -6,10 +6,9 @@ use App\Constants\StatusConstants;
 use App\Http\Repositories\Interfaces\JobRepositoryInterface;
 use App\Models\Job;
 use Carbon\Carbon;
-use http\Client\Response;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
-use Illuminate\Http\JsonResponse;
+
 
 class JobRepository extends BaseRepository implements JobRepositoryInterface
 {

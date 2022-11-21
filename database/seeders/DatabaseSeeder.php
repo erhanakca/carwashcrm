@@ -2,12 +2,11 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 use App\Models\Customer;
 use App\Models\Job;
 use App\Models\Service;
 use App\Models\User;
-use App\Models\VehicleType;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;

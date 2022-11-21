@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Repositories\Eloquent\CustomerRepository;
 use App\Http\Requests\CustomerRequest;
-use App\Models\Customer;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Database\RecordsNotFoundException;
 
 

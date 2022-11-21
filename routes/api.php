@@ -5,7 +5,6 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\VehicleTypeController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
