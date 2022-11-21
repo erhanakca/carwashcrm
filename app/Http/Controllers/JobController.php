@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Constants\StatusConstants;
 use App\Http\Repositories\Eloquent\CustomerRepository;
 use App\Http\Repositories\Eloquent\JobRepository;
-use App\Http\Repositories\Eloquent\JobUpdateStatusRepository;
 use App\Http\Requests\JobRequest;
 use App\Http\Requests\JobUpdateStatusRequest;
+use App\Http\Requests\JobUpdateRequest;
+use App\Models\Job;
 use http\Env\Response;
 use Illuminate\Database\RecordsNotFoundException;
 use Illuminate\Http\JsonResponse;
@@ -34,7 +35,7 @@ class JobController extends Controller
         }
     }
 
-    public function save(JobRequest $request)
+    public function save(JobRequest $request): JsonResponse
     {
         try {
             $data = $request->validated();
@@ -55,10 +56,19 @@ class JobController extends Controller
         }
     }
 
-    public function delete($job_id)
+    public function delete($job_id): JsonResponse
     {
         try {
             return response()->json(['success' => true, 'data' => $this->jobRepository->delete($job_id)]);
+        }catch (\Exception $e){
+            return response()->json(['success' => false, 'error' => $e->getMessage()], 404);
+        }
+    }
+
+    public function updateJob($job_id, JobUpdateRequest $request): JsonResponse
+    {
+        try {
+            return response()->json(['success' => true, 'data' => $this->jobRepository->jobUpdate($job_id, $request->validated())]);
         }catch (\Exception $e){
             return response()->json(['success' => false, 'error' => $e->getMessage()], 404);
         }

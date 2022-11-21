@@ -8,18 +8,20 @@ use App\Http\Requests\ServiceBulkUpdateRequest;
 use App\Http\Requests\ServiceRequest;
 use App\Models\Service;
 use Illuminate\Database\RecordsNotFoundException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
-    private $serviceRepository;
+    private ServiceRepository $serviceRepository;
 
     public function __construct(ServiceRepository $serviceRepository)
     {
         $this->serviceRepository = $serviceRepository;
     }
 
-    public function index()
+
+    public function index(): JsonResponse
     {
         try {
             return response()->json(['success' => true, 'data' =>  $this->serviceRepository->all()]);
@@ -28,7 +30,8 @@ class ServiceController extends Controller
         }
     }
 
-    public function save(ServiceRequest $request)
+
+    public function save(ServiceRequest $request): JsonResponse
     {
         try {
             return response()->json(['success' => true, 'data' => $this->serviceRepository->create($request->validated())]);
@@ -37,7 +40,8 @@ class ServiceController extends Controller
         }
     }
 
-    public function update($service_id, ServiceRequest $request)
+
+    public function update($service_id, ServiceRequest $request): JsonResponse
     {
         try {
             $this->serviceRepository->delete($service_id);
@@ -47,9 +51,9 @@ class ServiceController extends Controller
         }
     }
 
-    public function bulkUpdate(Request $request)
-    {
 
+    public function bulkUpdate(Request $request): JsonResponse
+    {
         //TODO request controlü yapılacak.
         try {
         $data = $request->all();
@@ -63,11 +67,11 @@ class ServiceController extends Controller
         }catch (\Exception $e) {
             return response()->json(['success' => false, 'error' => $e->getMessage()], 404);
         }
-
         return response()->json(['success' => true, $data], 200);
     }
 
-    public function delete($service_id)
+
+    public function delete($service_id): JsonResponse
     {
         try {
             return response()->json(['success' => true, 'data' => $this->serviceRepository->delete($service_id)]);

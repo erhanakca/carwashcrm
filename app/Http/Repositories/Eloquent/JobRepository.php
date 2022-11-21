@@ -13,7 +13,6 @@ use Illuminate\Http\JsonResponse;
 
 class JobRepository extends BaseRepository implements JobRepositoryInterface
 {
-    private StatusConstants $statusConstants;
     public function __construct(Job $model)
     {
         parent::__construct($model);
@@ -50,4 +49,35 @@ class JobRepository extends BaseRepository implements JobRepositoryInterface
         }
         return $job;
     }
+
+
+    public function jobUpdate(int $id, array $update): Model
+    {
+        $job = Job::find($id);
+        if ($update['status'] == StatusConstants::PENDING)
+        {
+            $job->update([
+                'service_id' => $update['service_id'],
+                'customer_id' => $update['customer_id'],
+                'vehicle_type_id' => $update['vehicle_type_id'],
+                'status' => $update['status'],
+                'plate_number' => $update['plate_number'],
+            ]);
+            $job->start_date = null;
+            $job->end_date = null;
+            $job->save();
+        }else
+        {
+            $job->update([
+                'service_id' => $update['service_id'],
+                'customer_id' => $update['customer_id'],
+                'vehicle_type_id' => $update['vehicle_type_id'],
+                'status' => $update['status'],
+                'plate_number' => $update['plate_number']
+            ]);
+        }
+
+        return $job;
+    }
+
 }

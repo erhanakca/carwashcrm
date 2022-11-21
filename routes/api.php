@@ -63,6 +63,7 @@ Route::group([
     Route::get('/', [JobController::class, 'index']);
     Route::post('/add', [JobController::class, 'save']);
     Route::patch('/update_status/{job_id}', [JobController::class, 'updateStatus']);
+    Route::patch('/update/{job_id}', [JobController::class, 'updateJob']);
     Route::delete('/delete/{job_id}', [JobController::class, 'delete']);
 });
 
