@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\UserRequests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-
-class CustomerRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,22 +26,20 @@ class CustomerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string',
-            'surname' => 'required|string',
-            'phone' => 'required|integer'
+            'email' => 'required|email',
+            'password' => 'required|string|min:6',
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'Name is Required!',
-            'surname.required' => 'Surname is Required!',
-            'phone.required' => 'Phone is Required!'
+            'email.required' => 'Email is Required!',
+            'password.required' => 'Password is Required!',
         ];
     }
 
-    public function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+    public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
             'success' => false,
@@ -49,6 +47,4 @@ class CustomerRequest extends FormRequest
             'data' => null
         ], 422));
     }
-
-
 }

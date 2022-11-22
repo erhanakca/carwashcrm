@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleTypeController;
 use Illuminate\Support\Facades\Route;
 
@@ -64,6 +65,16 @@ Route::group([
     Route::patch('/update_status/{job_id}', [JobController::class, 'updateStatus']);
     Route::patch('/update/{job_id}', [JobController::class, 'updateJob']);
     Route::delete('/delete/{job_id}', [JobController::class, 'delete']);
+});
+
+Route::group([
+    'middleware' => 'auth:api',
+    'prefix' => 'users'
+], function ($router){
+    Route::patch('/update_name', [UserController::class, 'updateName']);
+    Route::patch('/update_company', [UserController::class, 'updateCompany']);
+    Route::patch('/update_email', [UserController::class, 'updateEmail']);
+    Route::patch('/update_password', [UserController::class, 'updatePassword']);
 });
 
 

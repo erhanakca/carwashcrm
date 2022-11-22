@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LoginRequest;
-use App\Http\Requests\RegisterRequest;
-use Illuminate\Http\JsonResponse;
+use App\Http\Requests\UserRequests\LoginRequest;
+use App\Http\Requests\UserRequests\RegisterRequest;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Validator;
 
 class AuthController extends Controller

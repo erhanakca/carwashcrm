@@ -20,6 +20,7 @@ class BaseRepository implements ModelRepositoryInterface
         return $this->model->create($data);
     }
 
+
     public function update(int $id, array $data): Model
     {
         $this->model = $this->find($id);
@@ -27,10 +28,12 @@ class BaseRepository implements ModelRepositoryInterface
         return $this->model;
     }
 
+
     public function delete(int $id): bool
     {
         return $this->model->destroy($id);
     }
+
 
     public function find(int $id): Model
     {
