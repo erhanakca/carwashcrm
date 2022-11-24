@@ -23,8 +23,8 @@ class JobFactory extends Factory
             'status' => rand(1, 3),
             'vehicle_type_id' => rand(1, 6),
             'plate_number' => fake()->randomElement(['34ZS4523', '41TY9632', '56FG7896', '41OKT689', '42BRO365']),
-            'start_date' => fake()->dateTimeBetween('now', '+3 hour')->format('Y-m-d H:i:s'),
-            'end_date' => fake()->dateTimeBetween('+4 haur', '+1 day')->format('Y-m-d H:i:s'),
+            'start_date' => fake()->dateTimeBetween('now', '+3 hour')->format('Y-m-d'),
+            'end_date' => fake()->dateTimeBetween('+1 hour', '+2 day')->format('Y-m-d'),
         ];
     }
 }

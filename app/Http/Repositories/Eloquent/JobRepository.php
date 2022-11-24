@@ -82,6 +82,14 @@ class JobRepository extends BaseRepository implements JobRepositoryInterface
 
     public function filterByDate(array $date): Collection
     {
-        return Job::where('start_date', '>=', $date['start_date'])->where('end_date', '<=', $date['end_date'])->get();
+        $start_date = Carbon::parse($date['start_date']);
+        $end_date = Carbon::parse($date['end_date']);
+
+        return Job::all()->filter(function ($item) use($start_date, $end_date){
+            if ($item->start_date >= $start_date && $item->end_date <= $end_date){
+                return $item;
+            }
+        });
+
     }
 }
