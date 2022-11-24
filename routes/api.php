@@ -65,6 +65,7 @@ Route::group([
     Route::patch('/update_status/{job_id}', [JobController::class, 'updateStatus']);
     Route::patch('/update/{job_id}', [JobController::class, 'updateJob']);
     Route::delete('/delete/{job_id}', [JobController::class, 'delete']);
+    Route::post('/filter', [JobController::class, 'filterByDate']);
 });
 
 Route::group([
@@ -76,5 +77,7 @@ Route::group([
     Route::patch('/update_email', [UserController::class, 'updateEmail']);
     Route::patch('/update_password', [UserController::class, 'updatePassword']);
 });
+
+
 
 

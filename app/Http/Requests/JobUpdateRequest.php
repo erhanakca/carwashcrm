@@ -37,9 +37,9 @@ class JobUpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            'service_id.required' => 'Service id is Required!',
-            'customer_id.required' => 'Customer id is Required!',
-            'vehicle_type_id.required' => 'Vehicle Type id is Required!',
+            'service_id.required' => 'Service is Required!',
+            'customer_id.required' => 'Customer is Required!',
+            'vehicle_type_id.required' => 'Vehicle Type is Required!',
             'plate_number.required' => 'Plate Number is Required!',
             'status' => 'Status is Required',
         ];

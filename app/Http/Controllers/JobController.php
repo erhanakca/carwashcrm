@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Constants\StatusConstants;
 use App\Http\Repositories\Eloquent\JobRepository;
+use App\Http\Requests\FilterRequest;
 use App\Http\Requests\JobRequest;
 use App\Http\Requests\JobUpdateStatusRequest;
 use App\Http\Requests\JobUpdateRequest;
+use App\Models\Job;
 use Illuminate\Database\RecordsNotFoundException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Date;
 
 
 class JobController extends Controller
@@ -69,5 +72,22 @@ class JobController extends Controller
         }catch (\Exception $e){
             return response()->json(['success' => false, 'error' => $e->getMessage()], 404);
         }
+    }
+
+    public function filterByDate(FilterRequest $request): JsonResponse
+    {
+        try {
+            $data = $this->jobRepository->filterByDate($request->validated());
+
+            if ($data) {
+                return response()->json(['success' => true, 'data' => $data]);
+            } else {
+                return response()->json(['success' => true, 'message' => 'There is no work between these dates']);
+            }
+
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'error' => $e->getMessage()], 404);
+        }
+
     }
 }

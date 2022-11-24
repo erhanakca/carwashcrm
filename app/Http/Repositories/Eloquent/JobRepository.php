@@ -8,6 +8,7 @@ use App\Models\Job;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Date;
 
 
 class JobRepository extends BaseRepository implements JobRepositoryInterface
@@ -79,4 +80,8 @@ class JobRepository extends BaseRepository implements JobRepositoryInterface
         return $job;
     }
 
+    public function filterByDate(array $date): Collection
+    {
+        return Job::where('start_date', '>=', $date['start_date'])->where('end_date', '<=', $date['end_date'])->get();
+    }
 }
