@@ -65,7 +65,11 @@ Route::group([
     Route::patch('/update_status/{job_id}', [JobController::class, 'updateStatus']);
     Route::patch('/update/{job_id}', [JobController::class, 'updateJob']);
     Route::delete('/delete/{job_id}', [JobController::class, 'delete']);
-    Route::post('/filter', [JobController::class, 'filterByDate']);
+    Route::post('/filter/by/date', [JobController::class, 'filterByDate']);
+    Route::post('/filter/jobs/status', [JobController::class, 'filterJobsStatus']);
+    Route::post('/filter/today/jobs', [JobController::class, 'filterTodayJobs']);
+
+
 });
 
 Route::group([

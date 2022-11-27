@@ -9,5 +9,4 @@ class StatusConstants
     const DONE = 3;
     const CANCELLED = 4;
 
-
 }

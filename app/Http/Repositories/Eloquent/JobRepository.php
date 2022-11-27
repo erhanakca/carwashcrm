@@ -8,7 +8,7 @@ use App\Models\Job;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Date;
+use JetBrains\PhpStorm\NoReturn;
 
 
 class JobRepository extends BaseRepository implements JobRepositoryInterface
@@ -76,9 +76,9 @@ class JobRepository extends BaseRepository implements JobRepositoryInterface
                 'plate_number' => $update['plate_number']
             ]);
         }
-
         return $job;
     }
+
 
     public function filterByDate(array $date): Collection
     {
@@ -90,6 +90,47 @@ class JobRepository extends BaseRepository implements JobRepositoryInterface
                 return $item;
             }
         });
-
     }
+
+    public function filterJobsStatus(int $status): Collection
+    {
+        if ($status == StatusConstants::PENDING){
+            return Job::where('status', $status)->get();
+        }elseif ($status == StatusConstants::IN_PROCESS){
+            return Job::where('status', $status)->get();
+        }elseif ($status == StatusConstants::DONE){
+            return Job::where('status', $status)->get();
+        }else{
+            return Job::where(StatusConstants::CANCELLED)->get();
+        }
+    }
+
+    /*public function filterTodayJobs(array $data): Collection
+    {
+        $status = Job::where('status', $data['status']);
+        dd(Job::find($status));
+        $start_date = Carbon::parse($data['start_date']);
+        $end_date = Carbon::now();
+
+        Job::all()->filter(function ($item) use($start_date, $end_date){
+            if ($item->start_date >= $start_date && $item->end_date <= $end_date){
+                return $item;
+            }
+        });
+
+
+        if ($start_date == Carbon::now()){
+            return Job::where('status', $status)->get();
+        }elseif ($start_date == Carbon::now()){
+            return Job::where('status', $status)->get();
+        }elseif ($start_date == Carbon::now()){
+            return Job::where('status', $status)->get();
+        }else{
+            return Job::where(StatusConstants::CANCELLED)->get();
+        }
+
+    }*/
+
+
 }
+

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Constants\StatusConstants;
 use App\Http\Repositories\Eloquent\JobRepository;
-use App\Http\Requests\FilterRequest;
+use App\Http\Requests\FilterByDateRequest;
+use App\Http\Requests\FilterJobsStatusRequest;
+use App\Http\Requests\FilterTodayJobsRequest;
 use App\Http\Requests\JobRequest;
 use App\Http\Requests\JobUpdateStatusRequest;
 use App\Http\Requests\JobUpdateRequest;
@@ -74,7 +76,7 @@ class JobController extends Controller
         }
     }
 
-    public function filterByDate(FilterRequest $request): JsonResponse
+    public function filterByDate(FilterByDateRequest $request): JsonResponse
     {
         try {
             $data = $this->jobRepository->filterByDate($request->validated());
@@ -88,6 +90,41 @@ class JobController extends Controller
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'error' => $e->getMessage()], 404);
         }
+    }
+
+    public function filterJobsStatus(FilterJobsStatusRequest $request): JsonResponse
+    {
+        try {
+            $status_id = $request->validated()['status'];
+            $data = $this->jobRepository->filterJobsStatus($status_id);
+
+            if ($data->count() > 0) {
+                return response()->json(['success' => true, 'data' => $data]);
+            } else {
+                return response()->json(['success' => true, 'message' => 'No job in this status!']);
+            }
+
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'error' => $e->getMessage()], 404);
+        }
+    }
+
+    public function filterTodayJobs(FilterTodayJobsRequest $request): JsonResponse
+    {
+        try {
+
+            $data = $this->jobRepository->filterTodayJobs($request->validated());
+            if ($data->count() > 0) {
+                return response()->json(['success' => true, 'data' => $data]);
+            } else {
+                return response()->json(['success' => true, 'message' => 'No job in this status!']);
+            }
+
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'error' => $e->getMessage()], 404);
+        }
 
     }
+
+
 }
