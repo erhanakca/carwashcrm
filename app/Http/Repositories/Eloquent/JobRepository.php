@@ -94,43 +94,23 @@ class JobRepository extends BaseRepository implements JobRepositoryInterface
 
     public function filterJobsStatus(int $status): Collection
     {
-        if ($status == StatusConstants::PENDING){
-            return Job::where('status', $status)->get();
-        }elseif ($status == StatusConstants::IN_PROCESS){
-            return Job::where('status', $status)->get();
-        }elseif ($status == StatusConstants::DONE){
-            return Job::where('status', $status)->get();
-        }else{
-            return Job::where(StatusConstants::CANCELLED)->get();
-        }
+        return Job::where('status', $status)->get();
+
     }
 
-    /*public function filterTodayJobs(array $data): Collection
+    public function filterTodayJobs(array $data): Collection
     {
-        $status = Job::where('status', $data['status']);
-        dd(Job::find($status));
+        $status = $data['status'];
         $start_date = Carbon::parse($data['start_date']);
-        $end_date = Carbon::now();
+        $end_date = Carbon::parse($data['end_date']);
+        $jobs = Job::where('status', $status)->get();
 
-        Job::all()->filter(function ($item) use($start_date, $end_date){
+        return $jobs->filter(function ($item) use($start_date, $end_date){
             if ($item->start_date >= $start_date && $item->end_date <= $end_date){
                 return $item;
             }
         });
-
-
-        if ($start_date == Carbon::now()){
-            return Job::where('status', $status)->get();
-        }elseif ($start_date == Carbon::now()){
-            return Job::where('status', $status)->get();
-        }elseif ($start_date == Carbon::now()){
-            return Job::where('status', $status)->get();
-        }else{
-            return Job::where(StatusConstants::CANCELLED)->get();
-        }
-
-    }*/
+    }
 
 
 }
-

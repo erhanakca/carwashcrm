@@ -69,7 +69,6 @@ Route::group([
     Route::post('/filter/jobs/status', [JobController::class, 'filterJobsStatus']);
     Route::post('/filter/today/jobs', [JobController::class, 'filterTodayJobs']);
 
-
 });
 
 Route::group([
