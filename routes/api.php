@@ -67,7 +67,7 @@ Route::group([
     Route::delete('/delete/{job_id}', [JobController::class, 'delete']);
     Route::post('/filter/by/date', [JobController::class, 'filterByDate']);
     Route::post('/filter/jobs/status', [JobController::class, 'filterJobsStatus']);
-    Route::post('/filter/today/jobs', [JobController::class, 'filterTodayJobs']);
+    Route::post('/filter/jobs', [JobController::class, 'filterJobs']);
 
 });
 

@@ -111,6 +111,4 @@ class JobRepository extends BaseRepository implements JobRepositoryInterface
             }
         });
     }
-
-
 }

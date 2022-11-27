@@ -109,7 +109,7 @@ class JobController extends Controller
         }
     }
 
-    public function filterTodayJobs(FilterTodayJobsRequest $request): JsonResponse
+    public function filterJobs(FilterTodayJobsRequest $request): JsonResponse
     {
         try {
 
