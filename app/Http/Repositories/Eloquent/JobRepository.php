@@ -98,7 +98,7 @@ class JobRepository extends BaseRepository implements JobRepositoryInterface
 
     }
 
-    public function filterTodayJobs(array $data): Collection
+    public function filterJobs(array $data): Collection
     {
         $status = $data['status'];
         $start_date = Carbon::parse($data['start_date']);

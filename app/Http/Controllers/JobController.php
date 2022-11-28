@@ -6,7 +6,7 @@ use App\Constants\StatusConstants;
 use App\Http\Repositories\Eloquent\JobRepository;
 use App\Http\Requests\FilterByDateRequest;
 use App\Http\Requests\FilterJobsStatusRequest;
-use App\Http\Requests\FilterTodayJobsRequest;
+use App\Http\Requests\FilterJobsRequest;
 use App\Http\Requests\JobRequest;
 use App\Http\Requests\JobUpdateStatusRequest;
 use App\Http\Requests\JobUpdateRequest;
@@ -109,11 +109,11 @@ class JobController extends Controller
         }
     }
 
-    public function filterJobs(FilterTodayJobsRequest $request): JsonResponse
+    public function filterJobs(FilterJobsRequest $request): JsonResponse
     {
         try {
 
-            $data = $this->jobRepository->filterTodayJobs($request->validated());
+            $data = $this->jobRepository->filterJobs($request->validated());
             if ($data->count() > 0) {
                 return response()->json(['success' => true, 'data' => $data]);
             } else {
@@ -123,7 +123,6 @@ class JobController extends Controller
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'error' => $e->getMessage()], 404);
         }
-
     }
 
 
