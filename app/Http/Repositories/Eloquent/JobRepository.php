@@ -85,7 +85,7 @@ class JobRepository extends BaseRepository implements JobRepositoryInterface
         $start_date = Carbon::parse($date['start_date']);
         $end_date = Carbon::parse($date['end_date']);
 
-        return Job::where('user_id', auth()->user()->user_id)->all()->filter(function ($item) use($start_date, $end_date){
+        return Job::all()->where('user_id', auth()->user()->user_id)->filter(function ($item) use($start_date, $end_date){
             if ($item->start_date >= $start_date && $item->end_date <= $end_date){
                 return $item;
             }
