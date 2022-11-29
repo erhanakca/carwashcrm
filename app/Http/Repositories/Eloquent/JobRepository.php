@@ -85,7 +85,7 @@ class JobRepository extends BaseRepository implements JobRepositoryInterface
         $start_date = Carbon::parse($date['start_date']);
         $end_date = Carbon::parse($date['end_date']);
 
-        return Job::all()->filter(function ($item) use($start_date, $end_date){
+        return Job::where('user_id', auth()->user()->user_id)->all()->filter(function ($item) use($start_date, $end_date){
             if ($item->start_date >= $start_date && $item->end_date <= $end_date){
                 return $item;
             }
@@ -94,7 +94,7 @@ class JobRepository extends BaseRepository implements JobRepositoryInterface
 
     public function filterJobsStatus(int $status): Collection
     {
-        return Job::where('status', $status)->get();
+        return Job::where('user_id', auth()->user()->user_id)->where('status', $status)->get();
     }
 
 
@@ -103,7 +103,7 @@ class JobRepository extends BaseRepository implements JobRepositoryInterface
         $status = $data['status'];
         $start_date = Carbon::parse($data['start_date']);
         $end_date = Carbon::parse($data['end_date']);
-        $jobs = Job::where('status', $status)->get();
+        $jobs = Job::where('user_id', auth()->user()->user_id)->where('status', $status)->get();
 
         return $jobs->filter(function ($item) use($start_date, $end_date){
             if ($item->start_date >= $start_date && $item->end_date <= $end_date){
