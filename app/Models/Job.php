@@ -59,4 +59,3 @@ class Job extends Model
         return $this->hasOne(VehicleType::class, 'vehicle_type_id', 'vehicle_type_id');
     }
 }
-

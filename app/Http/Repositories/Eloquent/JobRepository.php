@@ -95,8 +95,8 @@ class JobRepository extends BaseRepository implements JobRepositoryInterface
     public function filterJobsStatus(int $status): Collection
     {
         return Job::where('status', $status)->get();
-
     }
+
 
     public function filterJobs(array $data): Collection
     {
