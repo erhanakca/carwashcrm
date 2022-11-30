@@ -5,6 +5,7 @@ namespace App\Http\Repositories\Eloquent;
 use App\Constants\StatusConstants;
 use App\Http\Repositories\Interfaces\JobRepositoryInterface;
 use App\Models\Job;
+use App\Models\Service;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
@@ -18,10 +19,12 @@ class JobRepository extends BaseRepository implements JobRepositoryInterface
         parent::__construct($model);
     }
 
+
     public function all(): Collection
     {
         return Job::where('user_id', auth()->user()->user_id)->with('service', 'customer', 'user', 'vehicleType')->get();
     }
+
 
     public function statusUpdate(int $id, array $data): Model
     {
@@ -84,13 +87,15 @@ class JobRepository extends BaseRepository implements JobRepositoryInterface
     {
         $start_date = Carbon::parse($date['start_date']);
         $end_date = Carbon::parse($date['end_date']);
+        $jobs = Job::where('user_id', auth()->user()->user_id)->get();
 
-        return Job::all()->where('user_id', auth()->user()->user_id)->filter(function ($item) use($start_date, $end_date){
+        return $jobs->filter(function ($item) use($start_date, $end_date){
             if ($item->start_date >= $start_date && $item->end_date <= $end_date){
                 return $item;
             }
         });
     }
+
 
     public function filterJobsStatus(int $status): Collection
     {
@@ -100,10 +105,10 @@ class JobRepository extends BaseRepository implements JobRepositoryInterface
 
     public function filterJobs(array $data): Collection
     {
-        $status = $data['status'];
         $start_date = Carbon::parse($data['start_date']);
         $end_date = Carbon::parse($data['end_date']);
-        $jobs = Job::where('user_id', auth()->user()->user_id)->where('status', $status)->get();
+        $jobs = Job::where('user_id', auth()->user()->user_id)->where('status', $data['status'])->get();
+
 
         return $jobs->filter(function ($item) use($start_date, $end_date){
             if ($item->start_date >= $start_date && $item->end_date <= $end_date){

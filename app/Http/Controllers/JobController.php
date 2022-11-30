@@ -80,7 +80,6 @@ class JobController extends Controller
     {
         try {
             $data = $this->jobRepository->filterByDate($request->validated());
-
             if ($data->count() > 0) {
                 return response()->json(['success' => true, 'data' => $data]);
             } else {

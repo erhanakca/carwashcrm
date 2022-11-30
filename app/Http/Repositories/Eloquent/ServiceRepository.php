@@ -18,4 +18,3 @@ class ServiceRepository extends BaseRepository implements ServiceRepositoryInter
         return Service::all();
     }
 }
-
