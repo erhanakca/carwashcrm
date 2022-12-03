@@ -50,7 +50,7 @@ class JobRepository extends BaseRepository implements JobRepositoryInterface
                 'status' => StatusConstants::CANCELLED,
             ]);
         }
-        return $job;
+        return $job->with('service', 'customer', 'user', 'vehicleType')->get();
     }
 
 
@@ -79,7 +79,7 @@ class JobRepository extends BaseRepository implements JobRepositoryInterface
                 'plate_number' => $update['plate_number']
             ]);
         }
-        return $job;
+        return $job->with('service', 'customer', 'user', 'vehicleType')->get();;
     }
 
 
@@ -91,7 +91,7 @@ class JobRepository extends BaseRepository implements JobRepositoryInterface
 
         return $jobs->filter(function ($item) use($start_date, $end_date){
             if ($item->start_date >= $start_date && $item->end_date <= $end_date){
-                return $item;
+                return $item->with('service', 'customer', 'user', 'vehicleType')->get();;
             }
         });
     }
@@ -99,7 +99,8 @@ class JobRepository extends BaseRepository implements JobRepositoryInterface
 
     public function filterJobsStatus(int $status): Collection
     {
-        return Job::where('user_id', auth()->user()->user_id)->where('status', $status)->get();
+        return Job::where('user_id', auth()->user()->user_id)->where('status', $status)->
+        with('service', 'customer', 'user', 'vehicleType')->get();
     }
 
 
@@ -107,12 +108,13 @@ class JobRepository extends BaseRepository implements JobRepositoryInterface
     {
         $start_date = Carbon::parse($data['start_date']);
         $end_date = Carbon::parse($data['end_date']);
-        $jobs = Job::where('user_id', auth()->user()->user_id)->where('status', $data['status'])->get();
+        $jobs = Job::where('user_id', auth()->user()->user_id)->where('status', $data['status'])->
+        with('service', 'customer', 'user', 'vehicleType')->get();
 
 
         return $jobs->filter(function ($item) use($start_date, $end_date){
             if ($item->start_date >= $start_date && $item->end_date <= $end_date){
-                return $item;
+                return $item->with('service', 'customer', 'user', 'vehicleType')->get();;
             }
         });
     }
