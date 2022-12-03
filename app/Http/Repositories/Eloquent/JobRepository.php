@@ -87,11 +87,11 @@ class JobRepository extends BaseRepository implements JobRepositoryInterface
     {
         $start_date = Carbon::parse($date['start_date']);
         $end_date = Carbon::parse($date['end_date']);
-        $jobs = Job::where('user_id', auth()->user()->user_id)->get();
+        $jobs = Job::where('user_id', auth()->user()->user_id)->with('service', 'customer', 'user', 'vehicleType')->get();
 
         return $jobs->filter(function ($item) use($start_date, $end_date){
             if ($item->start_date >= $start_date && $item->end_date <= $end_date){
-                return $item->with('service', 'customer', 'user', 'vehicleType')->get();;
+                return $item;
             }
         });
     }
@@ -114,7 +114,7 @@ class JobRepository extends BaseRepository implements JobRepositoryInterface
 
         return $jobs->filter(function ($item) use($start_date, $end_date){
             if ($item->start_date >= $start_date && $item->end_date <= $end_date){
-                return $item->with('service', 'customer', 'user', 'vehicleType')->get();;
+                return $item;
             }
         });
     }
