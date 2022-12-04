@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Repositories\Eloquent\ServiceRepository;
+use App\Http\Requests\BulkServiceRequest;
 use App\Http\Requests\ServiceRequest;
+use App\Models\Service;
 use Illuminate\Database\RecordsNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -50,28 +52,19 @@ class ServiceController extends Controller
     }
 
 
-    public function bulkUpdate(Request $request): JsonResponse
+    public function bulkUpdate(BulkServiceRequest $request): JsonResponse
     {
         try {
-        $data = $request->all();
-        foreach ($data as $item)
-        {
-            $validator = Validator::make($item, [
-                'name' => 'required',
-                'price' => 'required|integer',
-                'cost' => 'required|integer|lt:price'
-            ]);
+            $data = $request->validated();
 
-            if($validator->fails()){
-               throw new \Exception($validator->errors()->first(), 404);
-            }
-
+            foreach ($data['services'] as $item){
             $this->serviceRepository->delete($item['service_id']);
             $update_data = ['name' => $item['name'], 'price' => $item['price'], 'cost' => $item['cost'] ];
 
             $this->serviceRepository->create($update_data);
         }
         }catch (\Exception $e) {
+
             return response()->json(['success' => false, 'error' => $e->getMessage()], 404);
         }
         return response()->json(['success' => true, $data], 200);

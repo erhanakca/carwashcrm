@@ -79,7 +79,7 @@ class JobRepository extends BaseRepository implements JobRepositoryInterface
                 'plate_number' => $update['plate_number']
             ]);
         }
-        return $job->with('service', 'customer', 'user', 'vehicleType')->get();;
+        return $job->with('service', 'customer', 'user', 'vehicleType')->get();
     }
 
 
